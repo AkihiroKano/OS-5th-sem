@@ -1,0 +1,69 @@
+#!/bin/bash
+source_dir="$HOME/user/source"
+backup_root="$HOME/user/Backup-"
+current_date=$(date +%Y-%m-%d)
+backup_dir=""
+report_file="$HOME/user/backup-report"
+
+find_backup() {
+    find "$HOME/user" -maxdepth 1 -type d -name "Backup-*" -mtime -7 -print -quit
+}
+
+if [ ! -d "$source_dir" ]; then
+    echo "Ошибка: каталог $source_dir не существует." >&2
+    exit 1
+fi
+
+existing_backup=$(find_backup)
+if [ -n "$existing_backup" ]; then
+    backup_dir="$existing_backup"
+    echo "Используется существующий каталог резервного копирования: $backup_dir"
+else
+    # Создаем новый каталог backup
+    backup_dir="${backup_root}${current_date}"
+    mkdir -p "$backup_dir" || { echo "Ошибка: не удалось создать каталог $backup_dir." >&2; exit 1; }
+    echo "Создан новый каталог: $backup_dir ($current_date)" >> "$report_file"
+
+    find "$source_dir" -type f -print0 | while IFS= read -r -d '' file; do
+        cp -- "$file" "$backup_dir/$(basename -- "$file")" && \
+        echo "Скопирован: $(basename -- "$file")" >> "$report_file"
+    done
+
+    exit 0
+fi
+
+# Если backup уже существует, обновляем его
+echo "Обновление резервной копии: $backup_dir ($current_date)" >> "$report_file"
+updated_files=()
+renamed_files=()
+
+find "$source_dir" -type f -print0 | while IFS= read -r -d '' file; do
+    name=$(basename -- "$file")
+    src="$file"
+    dst="$backup_dir/$name"
+
+    if [ ! -f "$dst" ]; then
+        cp -- "$src" "$dst" && \
+        updated_files+=("$name")
+    else
+        src_size=$(stat -c %s -- "$src")
+        dst_size=$(stat -c %s -- "$dst")
+
+        if [ "$src_size" -ne "$dst_size" ]; then
+            mv -- "$dst" "$dst.$current_date" && \
+            cp -- "$src" "$dst" && \
+            updated_files+=("$name") && \
+            renamed_files+=("$name $name.$current_date")
+        fi
+    fi
+done
+
+if [ ${#updated_files[@]} -gt 0 ]; then
+    echo "Добавлены/обновлены файлы:" >> "$report_file"
+    printf "%s\n" "${updated_files[@]}" >> "$report_file"
+fi
+
+if [ ${#renamed_files[@]} -gt 0 ]; then
+    echo "Переименованные версии файлов:" >> "$report_file"
+    printf "%s\n" "${renamed_files[@]}" >> "$report_file"
+fi

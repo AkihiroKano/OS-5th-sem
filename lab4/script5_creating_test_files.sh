@@ -1,0 +1,35 @@
+#!/bin/bash
+
+test_dir="$HOME/test_dir"
+mkdir -p "$test_dir" || { echo "Ошибка: не удалось создать каталог $test_dir"; exit 1; }
+
+cd "$test_dir" || { echo "Ошибка: не удалось перейти в каталог $test_dir"; exit 1; }
+
+names=(
+    "-o | %.txt"
+    "file with spaces.txt"
+    "\\path\\file"
+    "??.txt"
+    "&.txt"
+    "|file|.txt"
+    "#abc.txt"
+    "-file.txt"
+    "file\nname.txt"
+    "dir with space/subdir?/file.txt"
+)
+
+for name in "${names[@]}"; do
+    if [[ "$name" == */* ]]; then
+        mkdir -p "$(dirname "$name")" || echo "Ошибка создания подкаталога: $name"
+    fi
+
+    if [[ "$name" == *.* ]]; then
+        touch -- "$name" || echo "Ошибка создания файла: $name"
+        echo "Тестовое содержимое" > "$name"
+    else
+        mkdir -p "$name" || echo "Ошибка создания каталога: $name"
+    fi
+done
+
+echo "Тестовая структура создана в каталоге: $(pwd)"
+tree

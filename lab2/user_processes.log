@@ -1,0 +1,96 @@
+Колличество процессов пользователя root: 97
+      1 /usr/lib/systemd/systemd --switched-root --system --deserialize 17
+      2 [kthreadd]
+      3 [rcu_gp]
+      4 [rcu_par_gp]
+      5 [kworker/0:0-events]
+      6 [kworker/0:0H-kblockd]
+      7 [kworker/u2:0-events_unbound]
+      8 [mm_percpu_wq]
+      9 [ksoftirqd/0]
+     10 [rcu_sched]
+     11 [migration/0]
+     12 [watchdog/0]
+     13 [cpuhp/0]
+     15 [kdevtmpfs]
+     16 [netns]
+     17 [kauditd]
+     18 [khungtaskd]
+     19 [oom_reaper]
+     20 [writeback]
+     21 [kcompactd0]
+     22 [ksmd]
+     23 [khugepaged]
+     24 [crypto]
+     25 [kintegrityd]
+     26 [kblockd]
+     27 [tpm_dev_wq]
+     28 [md]
+     29 [edac-poller]
+     30 [watchdogd]
+     31 [kworker/0:1-events]
+     33 [kworker/u2:1-events_unbound]
+     47 [kswapd0]
+    140 [kthrotld]
+    141 [acpi_thermal_pm]
+    142 [kmpath_rdacd]
+    143 [kaluad]
+    144 [ipv6_addrconf]
+    145 [kworker/0:2-xfs-conv/dm-2]
+    146 [kstrp]
+    270 [kworker/0:3-ata_sff]
+    444 [ata_sff]
+    445 [scsi_eh_0]
+    446 [scsi_tmf_0]
+    447 [scsi_eh_1]
+    448 [scsi_tmf_1]
+    449 [kworker/u2:2-events_unbound]
+    450 [scsi_eh_2]
+    451 [scsi_tmf_2]
+    452 [kworker/u2:3]
+    457 [kworker/0:1H-kblockd]
+    515 [kdmflush]
+    524 [kdmflush]
+    559 [jbd2/dm-0-8]
+    560 [ext4-rsv-conver]
+    627 [kworker/0:4-cgroup_destroy]
+    651 /usr/lib/systemd/systemd-journald
+    679 /usr/lib/systemd/systemd-udevd
+    727 [irq/18-vmwgfx]
+    729 [ttm_swap]
+    738 [kdmflush]
+    757 [jbd2/sda1-8]
+    758 [ext4-rsv-conver]
+    769 [xfsalloc]
+    770 [xfs_mru_cache]
+    771 [xfs-buf/dm-2]
+    774 [xfs-conv/dm-2]
+    775 [xfs-cil/dm-2]
+    776 [xfs-reclaim/dm-]
+    777 [xfs-log/dm-2]
+    778 [xfs-eofblocks/d]
+    779 [xfsaild/dm-2]
+    803 /sbin/auditd
+    811 [rpciod]
+    812 [kworker/u3:0]
+    814 [xprtiod]
+    832 /usr/sbin/mcelog --ignorenodev --daemon --foreground
+    834 /usr/sbin/sssd -i --logger=files
+    838 /usr/sbin/smartd -n -q never
+    841 /usr/sbin/ModemManager
+    844 /usr/sbin/gssproxy -D
+    865 /usr/libexec/sssd/sssd_be --domain implicit_files --uid 0 --gid 0 --logger=files
+    868 /usr/libexec/sssd/sssd_nss --uid 0 --gid 0 --logger=files
+    870 /usr/libexec/platform-python -s /usr/sbin/firewalld --nofork --nopid
+    871 /usr/lib/systemd/systemd-logind
+    886 /usr/sbin/NetworkManager --no-daemon
+    894 /usr/sbin/sshd -D -oCiphers=aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes256-ctr,aes256-cbc,aes128-gcm@openssh.com,aes128-ctr,aes128-cbc -oMACs=hmac-sha2-256-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha1,umac-128@openssh.com,hmac-sha2-512 -oGSSAPIKexAlgorithms=gss-gex-sha1-,gss-group14-sha1- -oKexAlgorithms=curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1 -oHostKeyAlgorithms=rsa-sha2-256,rsa-sha2-256-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384,ecdsa-sha2-nistp384-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-512-cert-v01@openssh.com,ecdsa-sha2-nistp521,ecdsa-sha2-nistp521-cert-v01@openssh.com,ssh-ed25519,ssh-ed25519-cert-v01@openssh.com,ssh-rsa,ssh-rsa-cert-v01@openssh.com -oPubkeyAcceptedKeyTypes=rsa-sha2-256,rsa-sha2-256-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384,ecdsa-sha2-nistp384-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-512-cert-v01@openssh.com,ecdsa-sha2-nistp521,ecdsa-sha2-nistp521-cert-v01@openssh.com,ssh-ed25519,ssh-ed25519-cert-v01@openssh.com,ssh-rsa,ssh-rsa-cert-v01@openssh.com -oCASignatureAlgorithms=rsa-sha2-256,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,rsa-sha2-512,ecdsa-sha2-nistp521,ssh-ed25519,ssh-rsa
+    896 /usr/libexec/platform-python -Es /usr/sbin/tuned -l -P
+   1129 /usr/sbin/atd -f
+   1130 /usr/sbin/crond -n
+   1131 login -- root
+   1417 /usr/lib/systemd/systemd --user
+   1422 (sd-pam)
+   1428 -bash
+   1458 /bin/bash ./user_processes.sh
+   1462 ps -u root -o pid,cmd --no-headers
